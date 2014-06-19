@@ -1,0 +1,22 @@
+
+<center> <%= text_field_tag(@donation, nil, class: "dollar") %> </center>
+
+<%= form_tag charges_path do %>
+<center>
+<article>
+    <center>
+    	<label class="amount">
+			<span>
+				<h3> Amount: <span id="money">  $0.00 </span> </h3>
+				<h1> </h1>
+			</span>
+    	</label>
+</article>
+  <script id="script_payment"
+  		  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="A month's subscription"
+          data-amount="">
+  </script>
+<% end %>
+</center>

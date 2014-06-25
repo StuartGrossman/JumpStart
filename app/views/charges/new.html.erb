@@ -11,12 +11,9 @@
 				<h1> </h1>
 			</span>
     	</label>
+      <div id="test_div"></div>
 </article>
-  <script id="script_payment"
-  		  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="A month's subscription"
-          data-amount="">
-  </script>
+
+
 <% end %>
 </center>

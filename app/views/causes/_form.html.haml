@@ -1,0 +1,23 @@
+= simple_form_for(@cause) do |f|
+  = f.error_notification
+
+  = f.input :title
+  = f.input :description
+  = f.input :total
+  = f.input :members
+  = f.input :user_id
+
+  = f.button :submit, :class => 'btn btn-primary'
+
+  - if @cause.persisted?
+    = link_to 'Cancel', @cause, :class => 'btn btn-default'
+  - else
+    = link_to 'Cancel', causes_path, :class => 'btn btn-default'
+
+  - if can?(:destroy, @cause) && @cause.persisted?
+    = link_to @cause,
+        :class => 'btn btn-danger pull-right',
+        :method => :delete,
+        :data => { :confirm => 'Are you sure?' } do
+      = fa_icon 'trash-o'
+      = "Destroy #{Cause.model_name.human}"

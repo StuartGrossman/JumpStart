@@ -7,7 +7,7 @@ def create
   # Amount in cents
   # query = params[:q]
   # @amount = query
-  binding.pry 
+  
 
   customer = Stripe::Customer.create(
     :email => 'example@stripe.com',

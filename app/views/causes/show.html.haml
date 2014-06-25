@@ -1,0 +1,26 @@
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to 'Home', root_path
+    %li= link_to Cause.model_name.human.pluralize, causes_path
+    %li.active= Cause.model_name.human
+
+.container
+  .page-header.clearfix
+    %h1.pull-left= Cause.model_name.human
+    .pull-right{ :style => 'margin-top: 20px' }
+      - if can?(:edit, @cause)
+        = link_to edit_cause_path(@cause), :class => 'btn btn-default pull-right' do
+          = fa_icon 'edit'
+          = "Edit #{Cause.model_name.human}"
+
+  %dl.dl-horizontal
+    %dt= Cause.human_attribute_name(:title)
+    %dd= @cause.title
+    %dt= Cause.human_attribute_name(:description)
+    %dd= @cause.description
+    %dt= Cause.human_attribute_name(:total)
+    %dd= @cause.total
+    %dt= Cause.human_attribute_name(:members)
+    %dd= @cause.members
+    %dt= Cause.human_attribute_name(:user_id)
+    %dd= @cause.user_id

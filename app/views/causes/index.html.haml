@@ -1,0 +1,42 @@
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to 'Home', root_path
+    %li.active= Cause.model_name.human.pluralize
+
+.container
+  .page-header.clearfix
+    %h1.pull-left= Cause.model_name.human.pluralize
+    .pull-right{ :style => 'margin-top: 20px' }
+      - if can?(:new, @causes.new)
+        = link_to new_cause_path, :class => 'btn btn-success pull-right' do
+          = fa_icon 'plus-circle'
+          = "New #{Cause.model_name.human}"
+
+  %table.table.table-hover.table-striped
+    %thead
+      %tr
+        %th= Cause.human_attribute_name(:title)
+        %th= Cause.human_attribute_name(:description)
+        %th= Cause.human_attribute_name(:total)
+        %th= Cause.human_attribute_name(:members)
+        %th= Cause.human_attribute_name(:user_id)
+        %th
+        %th
+        %th
+
+    %tbody
+      - @causes.each do |cause|
+        %tr
+          %td= cause.title
+          %td= cause.description
+          %td= cause.total
+          %td= cause.members
+          %td= cause.user_id
+          - if can?(:show, cause)
+            %td= link_to 'Show', cause
+          - if can?(:edit, cause)
+            %td= link_to 'Edit', edit_cause_path(cause)
+          - if can?(:destroy, cause)
+            %td= link_to 'Destroy', cause, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  = paginate @causes

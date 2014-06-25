@@ -1,0 +1,11 @@
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to 'Home', root_path
+    %li= link_to Cause.model_name.human.pluralize, causes_path
+    %li.active New
+
+.container
+  .page-header
+    %h1= "New #{Cause.model_name.human}"
+
+  = render 'form'

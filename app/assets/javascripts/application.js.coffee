@@ -13,4 +13,5 @@
 #= require jquery
 #= require jquery_ujs
 #= require bootstrap
+#= require charges
 #= require_tree .
